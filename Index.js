@@ -23,10 +23,11 @@ async function downloadFile(url) {//Each images from url
       if (err) return console.log(err.message);
       //console.log(res["_httpMessage"])
       let contentType = mime.extension(res.headers["content-type"]);
+      console.log(contentType)
       let fileType = res.headers["content-type"].split("/")
       if (fileType[0] != "image") return console.log("Invalid Url");
       let rootePath = `./Downloads/imageFile_${new Date().getTime()}.${contentType}`
-      console.log("files downloaded successfully")
+      console.log("Images downloaded successfully")
       return res.pipe(fs.createWriteStream(rootePath))
     })
   } catch (err) {
